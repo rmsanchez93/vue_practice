@@ -2,7 +2,7 @@
   <div class='card'>
     <h1>{{ dragon.name }}</h1>
     <br />
-    <img v-bind:src="dragon.image" v-on:click="dragonClickHandler" />
+    <img v-bind:src="dragon.image" v-on:click="dragonToggle" />
     <div v-if="clicked">
       <dragon-details :dragon="dragon"> </dragon-details>
     </div>
@@ -28,10 +28,11 @@ export default {
     // DragonDetails
   },
   methods: {
-    dragonClickHandler() {
+    dragonToggle() {
       console.log(this.dragon, "has been clicked");
       this.clicked = !this.clicked;
-      console.log(this.clicked);
+      this.dragon.atWar = !this.dragon.atWar
+      // console.log(this.dragon.atWar);
     },
   },
 };

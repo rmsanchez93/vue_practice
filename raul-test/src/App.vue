@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <HelloWorld msg="Dragon App built in Vue" />
-    <Section :home="true" :dragons="dragons" />
+    <br/>
+    <button v-on:click='toggleForm'>{{ showForm ? 'Close Form' : 'Add Dragon' }}</button>
+    <div v-if='showForm'>
+    <dragon-form :handleSubmit='handleSubmit' :addDragon='addDragon'/>
+    </div>
+    <Section :home="true" :dragons="homeDragons" />
     <Section :home="false" :dragons="warDragons" />
   </div>
 </template>
@@ -9,12 +14,14 @@
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
 import Section from "./components/Section.vue";
+import DragonForm from "./components/DragonForm.vue";
 
 export default {
   name: "App",
   components: {
     HelloWorld,
     Section,
+    DragonForm
   },
   data() {
     return {
@@ -51,20 +58,29 @@ export default {
           atWar: true,
         },
       ],
+      showForm: false
     };
   },
   computed: {
-    warDragons: {
-      //get
-      get: ()=>{
-        return this.dragons
-      },
-      //setter
-      set: ()=>{
-        return this.dragons.filter(d=>d.atWar)
-      }
-    }
+   warDragons(){
+     return this.dragons.filter(d=>d.atWar)
+   },
+   homeDragons(){
+     return this.dragons.filter(d=>!d.atWar)
+   }
   },
+  methods: {
+    toggleForm(){
+      this.showForm = !this.showForm
+    },
+    handleSubmit(e){
+      e.preventDefault()
+      console.log('submitted')
+    },
+    addDragon(dragon){
+      this.dragons = [...this.dragons, dragon]
+    }
+  }
 };
 </script>
 
@@ -76,5 +92,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  /* columns: 45% 2; */
 }
 </style>

@@ -39,8 +39,8 @@ h1{
 
 .home{
     background-color: aquamarine;
-    float: left;
-    width:50vw;
+    /* float: left; */
+    width:auto;
     height: 100%;
 }
 .war{
