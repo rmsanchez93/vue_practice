@@ -40,18 +40,23 @@ h1{
 .home{
     background-color: aquamarine;
     /* float: left; */
-    width:auto;
+    width:45%;
     height: 100%;
+    float: left;
 }
 .war{
     background-color: deeppink;
-    width: auto;
+    width:45%;
     /* float: left; */
-    height: 100%;
+    height:100%;
+    /* float:left; */
 
 }
 .container {
-  padding: 2px 16px;
+    margin:auto;
+    align-content: center;
+  padding: 20px;
+  display: inline-block;
 }
 
 </style>

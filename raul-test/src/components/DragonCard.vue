@@ -33,6 +33,14 @@ export default {
       this.clicked = !this.clicked;
       this.dragon.atWar = !this.dragon.atWar
       // console.log(this.dragon.atWar);
+      fetch('http://localhost:3000/dragons/'+this.dragon.id,{
+        method: 'PATCH',
+        headers: {
+          'Content-Type':'application/json',
+          'Accept':'application/json'
+        },
+        body:JSON.stringify({atWar:this.dragon.atWar})
+      })
     },
   },
 };
